@@ -18,6 +18,18 @@ final class CustomButton: UIButton {
     private let text: String
     private let action: (()->())?
     
+    init(text: String, action: (() -> ())? = nil) {
+        self.text = text
+        self.action = action
+        super.init(frame: .zero)
+        style()
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override var isHighlighted: Bool {
         didSet {
             UIView.animate(withDuration: 0.5,
@@ -44,18 +56,6 @@ final class CustomButton: UIButton {
             backgroundColor = .systemBlue
             tintColor = .systemGray6
         }
-    }
-    
-    init(text: String, action: (() -> ())? = nil) {
-        self.text = text
-        self.action = action
-        super.init(frame: .zero)
-        style()
-        layout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     private func style() {
